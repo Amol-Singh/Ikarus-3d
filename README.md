@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Dynamic UI Editor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app that provides a dynamic editor for customizing UI components (typography, buttons, galleries, layout, stroke/border) and a live preview. Includes layout switching and JSON export/import.
 
-## Available Scripts
+## Features
+- Typography: font family, weight, size.
+- Button: border radius, shadow, alignment, background and text color.
+- Galleries: alignment variants, spacing, image border radius.
+- General layout: card radius, container padding, section background color.
+- Stroke/border: stroke color and weight.
+- Layout switching: Layout A and Layout B.
+- Live preview updates instantly.
+- Export configuration as JSON and import JSON to load a configuration.
+- Persists configuration to `localStorage`.
 
-In the project directory, you can run:
+## Run locally
+1. `npm install`
+2. `npm start`
 
-### `npm start`
+Open http://localhost:3000
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Files of interest
+- `src/Editor.js` — the sidebar UI controls
+- `src/Preview.js` — live preview component that consumes config
+- `src/App.js` — state management and import/export
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Notes & Decisions
+- No backend required — state is stored in localStorage and can be exported as JSON.
+- Google fonts are included via `public/index.html`.
+- Simple CSS + inline styles are used for live dynamic style updates.
+- You can extend: add more controls, more layout variants, or an actual WYSIWYG canvas to drag elements.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+dynamic-ui-editor/
+├── README.md
+├── package.json
+├── node_modules/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── manifest.json        ← (optional; auto from CRA)
+│
+└── src/
+    ├── index.js
+    ├── App.js
+    ├── Editor.js
+    ├── Preview.js
+    ├── styles.css
+    └── assets/
+        └── (optional images/icons if you add any)

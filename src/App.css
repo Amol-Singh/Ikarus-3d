@@ -1,38 +1,223 @@
-.App {
-  text-align: center;
+:root {
+  --editor-width: 360px;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --danger: #dc2626;
+  --text-dark: #111827;
+  --text-muted: #6b7280;
+  --surface: #ffffff;
+  --surface-alt: #f9fafb;
+  --border: #e5e7eb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, Roboto, Poppins, sans-serif;
+  background: var(--surface-alt);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Layout container */
+.app-root {
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+  padding: 12px;
+}
+
+/* ---------------------- EDITOR PANEL ---------------------- */
+.editor {
+  width: var(--editor-width);
+  background: linear-gradient(180deg, #a137e3ff, #040402ff);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border);
+  height: calc(100vh - 24px);
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.editor::-webkit-scrollbar {
+  width: 6px;
+}
+.editor::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 10px;
+}
+
+/* Headings */
+.editor h2 {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 18px 0;
+}
+
+.editor h3 {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Section cards */
+.editor section {
+  background: var(--surface-alt);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+  transition: all 0.25s ease;
+}
+.editor section:hover {
+  background: #f3f4f6;
+}
+
+/* Labels + Inputs */
+.editor label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.editor select,
+.editor input[type="text"],
+.editor input[type="color"] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-size: 13px;
+  background-color: var(--surface);
+  color: var(--text-dark);
+  margin-top: 6px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.editor select:focus,
+.editor input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+.editor input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.small-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Button rows */
+.row {
+  display: flex;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.row button {
+  background: var(--accent);
+  border: none;
   color: white;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.row button:hover {
+  background: var(--accent-hover);
+}
+.row .danger {
+  background: var(--danger);
+}
+.row .danger:hover {
+  background: #b91c1c;
 }
 
-.App-link {
-  color: #61dafb;
+/* Tiny layout buttons */
+.tiny {
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  color: var(--text-dark);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+.tiny.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+.tiny:hover {
+  background: #e5e7eb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* File input */
+.file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #e0e7ff;
+  color: #1e3a8a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.file-label:hover {
+  background: #c7d2fe;
+}
+.file-label input[type=file] {
+  display: none;
+}
+
+/* Footer note */
+.editor-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------------------- PREVIEW PANEL ---------------------- */
+main {
+  flex: 1;
+  background: linear-gradient(180deg, #f9fafb, #eef2ff);
+  border-radius: 18px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Card preview styles */
+.preview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
 }
